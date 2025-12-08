@@ -20,8 +20,8 @@ export default function Home() {
             description: "Spezialisiert auf Node.js Middleware, Vercel und Enterprise-Integration.",
             sameAs: [
               "https://github.com/Dominien",
-              "https://linkedin.com/in/marcopatzelt", // Assuming this exists, can be updated
-              "https://twitter.com/marcopatzelt" // Assuming this exists
+              "https://linkedin.com/in/marco-patzelt-2574b1257/",
+              "https://x.com/Marc0dev"
             ],
             knowsAbout: ["Full-Stack Development", "Node.js", "React", "Next.js", "Vercel", "TypeScript", "System Integration"],
             image: "https://marc0.dev/marco-hero.png", // Pointing to the hero image
