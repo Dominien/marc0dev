@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco Patzelt | Full-Stack Engineer</title>
+    <meta name="description" content="Marco Patzelt - Full-Stack Engineer & Integration Specialist. Spezialisiert auf Node.js Middleware, Vercel und Enterprise-Integration.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        neutral: {
+                            900: '#171717',
+                            950: '#0a0a0a', // Aura dark background
+                        }
+                    },
+                    animation: {
+                        'reveal': 'reveal 0.8s cubic-bezier(0.2, 0.65, 0.3, 0.9) forwards',
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'pulse-glow': 'pulseGlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'dash': 'dash 3s linear infinite',
+                    },
+                    keyframes: {
+                        reveal: {
+                            '0%': { opacity: '0', transform: 'translateY(100%)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.5' },
+                        },
+                        dash: {
+                            'to': { strokeDashoffset: '-110' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities for the Aura Look */
+        body {
+            background-color: #0a0a0a;
+            color: rgba(255, 255, 255, 0.9);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Letter Reveal Wrapper */
+        .reveal-container {
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: bottom;
+        }
+        
+        .reveal-char {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Tech Tag */
+        .tech-tag {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.05);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Image Mask for Hero */
+        .hero-image-mask {
+            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        }
+        
+        /* Button Shine Effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: left 0.5s;
+        }
+        .btn-shine:hover::before {
+            left: 100%;
+        }
+
+        /* Pattern Grid */
+        .pattern-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-white/20 selection:text-white bg-neutral-950">
+
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-neutral-950/80 backdrop-blur-md transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/10 group-hover:bg-white/20 transition-colors">
+                    <span class="font-mono text-xs font-bold">MP</span>
+                </div>
+                <span class="text-sm font-medium text-white/90">Marco Patzelt</span>
+            </a>
+            
+            <nav class="hidden md:flex gap-8 text-sm font-medium text-white/60">
+                <a href="#profile" class="hover:text-white transition-colors">Profil</a>
+                <a href="#focus" class="hover:text-white transition-colors">Fokus</a>
+                <a href="#work" class="hover:text-white transition-colors">Kontext</a>
+                <a href="#stack" class="hover:text-white transition-colors">Stack</a>
+            </nav>
+
+            <a href="mailto:hello@marc0.dev" class="text-sm font-medium text-white/90 border border-white/10 bg-white/5 px-4 py-2 rounded-full hover:bg-white/10 transition-colors">
+                Kontakt
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION - REFINED -->
+        <section class="relative min-h-[85vh] flex items-center pt-32 pb-20 w-full overflow-hidden">
+            
+            <!-- Background Animation: ONLY in Hero (Unicorn Studio) -->
+            <div class="absolute inset-0 -z-10 pointer-events-none">
+                <div data-us-project="cqcLtDwfoHqqRPttBbQE" class="w-full h-full opacity-60"></div>
+                <!-- Gradient fade at bottom to blend into next section -->
+                <div class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-neutral-950 to-transparent"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- Left Column: Content (Text First on Mobile) -->
+                    <div class="flex flex-col justify-center">
+                        
+                        <!-- H1: Name with Animation (Reduced Size) -->
+                        <h1 class="font-bold tracking-tighter text-white leading-tight mb-6">
+                            <span class="block text-5xl md:text-6xl lg:text-7xl reveal-container">
+                                <span id="name-target" class="flex flex-wrap gap-x-[0.1em]">
+                                    Marco Patzelt
+                                </span>
+                            </span>
+                        </h1>
+
+                        <!-- Pitch Block -->
+                        <div class="space-y-8 opacity-0 animate-fade-in" style="animation-delay: 0.6s;">
+                            <div class="pl-4 border-l-2 border-white/20">
+                                <h2 class="text-lg md:text-xl font-mono text-white/90 tracking-tight mb-3">
+                                    Full-Stack Engineer & Integration Specialist
+                                </h2>
+                                <!-- UPDATED TEXT: Higher contrast (text-white/90) and normal font weight -->
+                                <p class="text-lg text-white/90 max-w-lg font-normal leading-relaxed drop-shadow-sm">
+                                    Spezialisiert auf die Entkopplung von Frontends und komplexer Business-Logik. Ich entwickle skalierbare Middleware und robuste Backends.
+                                </p>
+                            </div>
+                            
+                            <!-- ACTIONS (Refined Buttons) -->
+                            <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                                <!-- Primary Marketer UX CTA -->
+                                <a href="https://www.marketer-ux.com" target="_blank" class="btn-shine inline-flex h-11 items-center justify-center rounded-lg bg-white px-6 text-sm font-medium text-neutral-950 transition-all hover:bg-neutral-200 shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+                                    <span class="flex items-center gap-2">
+                                        Anfrage via Marketer UX
+                                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                                    </span>
+                                </a>
+                                
+                                <!-- Secondary Contact -->
+                                <a href="mailto:hello@marc0.dev" class="inline-flex h-11 items-center justify-center rounded-lg border border-white/10 bg-white/5 px-6 text-sm font-medium text-white transition-colors hover:bg-white/10 hover:border-white/20 backdrop-blur-sm">
+                                    Direkter Kontakt
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Visual / Image -->
+                    <div class="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center lg:justify-end opacity-0 animate-fade-in" style="animation-delay: 0.4s;">
+                        
+                        <!-- Main Image Container -->
+                        <div class="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-visible">
+                            <!-- Placeholder Image (Replace SRC with your own) -->
+                            <!-- Using grayscale and contrast filters to blend nicely -->
+                            <img 
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" 
+                                alt="Marco Patzelt" 
+                                class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-700 ease-out hero-image-mask opacity-80 hover:opacity-100"
+                            >
+                            
+                            <!-- Floating Card 1: Vercel -->
+                            <div class="absolute -left-2 top-16 glass-card p-3 rounded-xl flex items-center gap-3 animate-float border-l border-white/20 shadow-xl shadow-black/50 backdrop-blur-md">
+                                <div class="bg-black p-1.5 rounded-md border border-white/10">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-white"><path d="M24 22.525H0l12-21.05 12 21.05z" fill="white"/></svg>
+                                </div>
+                                <div class="pr-2">
+                                    <div class="text-[9px] text-white/50 font-mono uppercase tracking-wider">Architecture</div>
+                                    <div class="text-xs font-semibold text-white">Serverless</div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Card 2: Node.js -->
+                            <div class="absolute -right-2 bottom-24 glass-card p-3 rounded-xl flex items-center gap-3 animate-float-delayed border-r border-green-500/30 shadow-xl shadow-black/50 backdrop-blur-md">
+                                <div class="bg-green-900/30 p-1.5 rounded-md border border-green-500/20">
+                                    <i data-lucide="server" class="w-4 h-4 text-green-400"></i>
+                                </div>
+                                <div class="pr-2">
+                                    <div class="text-[9px] text-white/50 font-mono uppercase tracking-wider">Backend</div>
+                                    <div class="text-xs font-semibold text-white">Node.js</div>
+                                </div>
+                            </div>
+
+                            <!-- Decorative Grid behind image -->
+                            <div class="absolute -z-10 -right-6 -top-6 w-full h-full border border-white/5 rounded-2xl pattern-grid opacity-30"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFESSIONAL PROFILE (Abstract) -->
+        <section id="profile" class="py-20 bg-neutral-950 border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-4">
+                    <h2 class="text-2xl font-semibold tracking-tight text-white mb-4">Professional Profile</h2>
+                    <p class="text-sm text-white/40 font-mono">Abstract</p>
+                </div>
+                <div class="lg:col-span-8 prose prose-invert prose-lg text-white/70">
+                    <p>
+                        Marco Patzelt ist Software Engineer an der Schnittstelle moderner Web-Stacks und Enterprise-Datensystemen. Fokus auf der Brücke zwischen Design-getriebenen Frontends und logiklastigen Backends.
+                    </p>
+                    <p>
+                        Kernkompetenzen umfassen die Entwicklung von benutzerdefinierter <span class="text-white">Node.js Middleware</span>, die nahtlose Integration von Drittanbieter-Ökosystemen (Dynamics 365, Salesforce) und das Deployment von Serverless-Infrastruktur via <span class="text-white">Vercel</span>. Der Ansatz ist strikt architektonisch: Design von Systemen, die Datenintegrität, Performance und Skalierbarkeit über streng getrennte Entwicklungs- und Produktionsumgebungen gewährleisten.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECT (Redesigned with FlowMaster Layout) -->
+        <section id="work" class="py-20 max-w-7xl mx-auto px-6 overflow-hidden">
+            <div class="grid lg:grid-cols-2 lg:gap-24 z-10 relative gap-x-12 gap-y-12 items-center">
+            
+                <!-- Left Column: Content -->
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-white mb-6 leading-[1.1] font-sans">
+                        Automatisierte Event-Buchungsarchitektur
+                        <span class="text-white/50 block mt-1 text-2xl lg:text-3xl">& CRM-Sync</span>
+                    </h2>
+                    
+                    <p class="text-white/40 text-sm font-mono uppercase tracking-wider mb-8">
+                        Projekt: European Speed Club | Branche: Automotive
+                    </p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div>
+                            <h3 class="text-white font-medium mb-2">Die Aufgabe</h3>
+                            <p class="text-white/60 text-lg font-light leading-relaxed">
+                                Technische Konzeption und Entwicklung einer Schnittstelle, die ein Webflow-Frontend mit Microsoft Dynamics 365 verbindet, um komplexe Buchungsprozesse ohne Enterprise-Overhead abzubilden.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-white font-medium mb-3">Die Umsetzung</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3 text-sm text-white/60">
+                                    <div class="mt-1 w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                                    <span><strong>Middleware Engineering:</strong> Node.js Applikation (Vercel) zur Entkopplung der Systemlogik.</span>
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-white/60">
+                                    <div class="mt-1 w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                    <span><strong>Daten-Synchronisation:</strong> Echtzeit-Abgleich für Buchungen.</span>
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-white/60">
+                                    <div class="mt-1 w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                                    <span><strong>High-Performance Caching:</strong> Upstash (Redis).</span>
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-white/60">
+                                    <div class="mt-1 w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                                    <span><strong>Translation Pipeline:</strong> DeepL Integration.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
+                        <a href="#" class="px-5 py-2.5 rounded-full bg-white text-black text-sm font-bold hover:bg-gray-200 transition-colors flex items-center gap-2">
+                            Zum Live-Projekt
+                            <i data-lucide="arrow-right" class="w-4 h-4 opacity-50"></i>
+                        </a>
+                        <div class="text-xs text-white/40 flex items-center gap-2 max-w-[200px] leading-tight">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white/20 shrink-0"></span>
+                            Realisiert im Rahmen meiner Tätigkeit bei der Marketer UX GmbH.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual Diagram -->
+                <div class="order-1 lg:order-2 relative w-full flex flex-col items-center select-none pointer-events-none">
+                    
+                    <!-- Diagram Header Labels -->
+                    <div class="w-full flex justify-between text-[10px] uppercase tracking-widest text-white/30 font-mono mb-2 px-4 max-w-[400px]">
+                        <span>Frontend</span>
+                        <span>Backend/CRM</span>
+                    </div>
+
+                    <!-- Icons Row (Sources) -->
+                    <div class="relative z-10 flex justify-between w-full max-w-[400px] mb-8 gap-2">
+                        <!-- Icon 1 (Inactive) -->
+                        <div class="w-10 h-10 rounded-xl bg-neutral-900 border border-white/5 flex items-center justify-center text-white/20 shadow-lg">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i>
+                        </div>
+                        <!-- Icon 2 (Inactive) -->
+                        <div class="w-10 h-10 rounded-xl bg-neutral-900 border border-white/5 flex items-center justify-center text-white/20 shadow-lg">
+                            <i data-lucide="tablet" class="w-5 h-5"></i>
+                        </div>
+                        <!-- Icon 3 (Inactive) -->
+                        <div class="w-10 h-10 rounded-xl bg-neutral-900 border border-white/5 flex items-center justify-center text-white/20 shadow-lg">
+                            <i data-lucide="monitor" class="w-5 h-5"></i>
+                        </div>
+                        <!-- Icon 4 (Active Source - Webflow/Web) -->
+                        <div class="w-10 h-10 rounded-xl bg-neutral-900 border border-blue-500/50 flex items-center justify-center text-white shadow-[0_0_20px_rgba(59,130,246,0.15)] relative scale-110 transition-transform">
+                            <i data-lucide="layout-template" class="w-5 h-5 text-blue-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Animated Connection Diagram -->
+                    <div class="relative w-full max-w-[400px] flex flex-col items-center">
+                        
+                        <!-- Vertical Flow Lines SVG -->
+                        <div class="absolute inset-0 z-0 pointer-events-none">
+                            <svg class="w-full h-full" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Background Noodle Lines -->
+                                <path d="M65 0 V40 C65 60 200 60 200 80 V100" stroke="white" stroke-opacity="0.05" stroke-width="2" stroke-dasharray="4 4"></path>
+                                <path d="M155 0 V40 C155 60 200 60 200 80 V100" stroke="white" stroke-opacity="0.05" stroke-width="2" stroke-dasharray="4 4"></path>
+                                <path d="M245 0 V40 C245 60 200 60 200 80 V100" stroke="white" stroke-opacity="0.05" stroke-width="2" stroke-dasharray="4 4"></path>
+
+                                <!-- Line from Webflow (4th icon position approx) to Webhook Node -->
+                                <path d="M335 0 V40 C335 60 200 60 200 80 V100" stroke="#3B82F6" stroke-opacity="0.3" stroke-width="2" stroke-dasharray="4 4"></path>
+                                <!-- Animated Pulse on the line -->
+                                <path d="M335 0 V40 C335 60 200 60 200 80 V100" stroke="#3B82F6" stroke-width="2" stroke-dasharray="10 100" class="animate-dash"></path>
+                                
+                                <!-- Line from Webhook to Dynamics -->
+                                <path d="M200 180 V220" stroke="white" stroke-opacity="0.1" stroke-width="2"></path>
+                            </svg>
+                        </div>
+
+                        <!-- Node 1: Webhook Trigger -->
+                        <div class="relative z-10 mt-[80px] w-64 bg-neutral-900 rounded-2xl p-4 border border-blue-500/30 shadow-[0_0_30px_-10px_rgba(59,130,246,0.2)]">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-blue-500/20 border border-blue-500/50 flex items-center justify-center text-white">
+                                        <i data-lucide="webhook" class="w-4 h-4 text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-[10px] font-bold text-white uppercase tracking-wider">Trigger</div>
+                                        <div class="text-xs text-white/60">Booking Request</div>
+                                    </div>
+                                </div>
+                                <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
+                            </div>
+                            
+                            <!-- JSON Payload Preview -->
+                            <div class="bg-black/50 rounded-lg p-3 font-mono text-[10px] text-white/40 leading-relaxed border border-white/5 relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-1">
+                                    <span class="text-[8px] text-blue-400 bg-blue-400/10 px-1 rounded">JSON</span>
+                                </div>
+                                <p><span class="text-purple-400">"event"</span>: <span class="text-green-400">"booking_create"</span>,</p>
+                                <p><span class="text-purple-400">"car"</span>: <span class="text-green-400">"Porsche GT3"</span>,</p>
+                                <p><span class="text-purple-400">"date"</span>: <span class="text-blue-400">"2025-06-20"</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Connection Bead -->
+                        <div class="w-px h-8 bg-gradient-to-b from-blue-500/50 to-white/10 my-0"></div>
+
+                        <!-- Node 2: Database Action -->
+                        <div class="relative z-10 w-64 bg-neutral-900 rounded-2xl p-4 border border-white/10 hover:border-white/20 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded bg-purple-500/20 border border-purple-500/50 flex items-center justify-center text-white">
+                                    <i data-lucide="database" class="w-4 h-4 text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] font-bold text-white/40 uppercase tracking-wider">Action</div>
+                                    <div class="text-xs text-white/80">Sync to Dynamics 365</div>
+                                </div>
+                                <div class="ml-auto opacity-50 text-green-400">
+                                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECHNICAL FOCUS (The Black Box) -->
+        <section id="focus" class="py-20 bg-white/[0.02] border-y border-white/5">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="mb-12">
+                    <h2 class="text-2xl font-semibold tracking-tight text-white">Technical Focus</h2>
+                    <p class="text-sm text-white/40 font-mono mt-1">Core Competencies</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Middleware -->
+                    <div class="glass-card p-6 rounded-2xl group hover:border-white/20 transition-colors">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-white/80 group-hover:text-white transition-colors">
+                            <i data-lucide="network" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-3">Middleware & Integration</h3>
+                        <p class="text-sm text-white/60 leading-relaxed">
+                            Engineering eigener Abstraktionsschichten zur Synchronisation moderner Frontends mit Legacy-CRMs (Microsoft Dynamics 365, Salesforce). Implementierung von RESTful APIs und Webhooks zur Handhabung komplexer Business-Logik außerhalb der Client-Umgebung.
+                        </p>
+                    </div>
+
+                    <!-- Serverless -->
+                    <div class="glass-card p-6 rounded-2xl group hover:border-white/20 transition-colors">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-white/80 group-hover:text-white transition-colors">
+                            <i data-lucide="cloud-lightning" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-3">Serverless Infrastructure</h3>
+                        <p class="text-sm text-white/60 leading-relaxed">
+                            Deployment und Management skalierbarer Serverless-Funktionen auf Vercel. Setup von Environment-basierten Workflows zur strikten Trennung von Sandbox- und Produktionsdaten.
+                        </p>
+                    </div>
+
+                    <!-- Backend -->
+                    <div class="glass-card p-6 rounded-2xl group hover:border-white/20 transition-colors">
+                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-white/80 group-hover:text-white transition-colors">
+                            <i data-lucide="database-zap" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-3">Modern Backend Engineering</h3>
+                        <p class="text-sm text-white/60 leading-relaxed">
+                            Nutzung von Supabase (PostgreSQL) für relationale Daten und Upstash (Redis) für High-Performance Caching-Strategien. Entwicklung automatisierter Sync-Workflows mit TypeScript und Node.js.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STACK SECTION (The Inventory) -->
+        <section id="stack" class="py-20 bg-white/[0.02] border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="text-2xl font-semibold tracking-tight text-white mb-10">The Stack</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Languages -->
+                    <div>
+                        <h3 class="text-sm font-medium text-white/90 mb-4 flex items-center gap-2">
+                            <i data-lucide="code-2" class="w-4 h-4 text-white/40"></i> Languages
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">JavaScript (ES6+)</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">HTML5/CSS3</span>
+                        </div>
+                    </div>
+
+                    <!-- Core Frameworks -->
+                    <div>
+                        <h3 class="text-sm font-medium text-white/90 mb-4 flex items-center gap-2">
+                            <i data-lucide="cpu" class="w-4 h-4 text-white/40"></i> Core Frameworks
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Express</span>
+                        </div>
+                    </div>
+
+                    <!-- Infrastructure & Data -->
+                    <div>
+                        <h3 class="text-sm font-medium text-white/90 mb-4 flex items-center gap-2">
+                            <i data-lucide="database" class="w-4 h-4 text-white/40"></i> Infra & Data
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag">Vercel</span>
+                            <span class="tech-tag">Supabase</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Redis (Upstash)</span>
+                        </div>
+                    </div>
+
+                    <!-- Enterprise -->
+                    <div>
+                        <h3 class="text-sm font-medium text-white/90 mb-4 flex items-center gap-2">
+                            <i data-lucide="building-2" class="w-4 h-4 text-white/40"></i> Enterprise
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag">Dynamics 365</span>
+                            <span class="tech-tag">Salesforce (API)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER (Connect) -->
+        <footer class="py-20 bg-neutral-950 border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <h2 class="text-2xl font-semibold text-white mb-4">Connect</h2>
+                <p class="text-white/60 mb-8 max-w-lg mx-auto">
+                    Immer offen für den Austausch über Software-Architektur, Serverless Patterns und modernes Web Engineering.
+                </p>
+                
+                <div class="flex justify-center gap-6">
+                    <a href="https://github.com" class="text-white/40 hover:text-white transition-colors flex items-center gap-2">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://linkedin.com" class="text-white/40 hover:text-white transition-colors flex items-center gap-2">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="mailto:hello@marc0.dev" class="text-white/40 hover:text-white transition-colors flex items-center gap-2">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                        <span>hello@marc0.dev</span>
+                    </a>
+                </div>
+                
+                <div class="mt-12 text-xs text-white/20 font-mono">
+                    © 2025 Marco Patzelt. Honest Engineering.
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script type="text/javascript">
+      // Load Unicorn Studio only for Hero
+      !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+
+      // Initialize Icons
+      lucide.createIcons();
+
+      // Staggered Text Reveal Logic
+      document.addEventListener('DOMContentLoaded', () => {
+          const nameContainer = document.getElementById('name-target');
+          const text = nameContainer.textContent.trim();
+          nameContainer.innerHTML = ''; 
+          
+          const words = text.split(' ');
+          let globalCharIndex = 0;
+          
+          words.forEach((word) => {
+              const wordSpan = document.createElement('span');
+              wordSpan.className = 'inline-block whitespace-nowrap mr-[0.2em]'; 
+              
+              word.split('').forEach((char) => {
+                  const charSpan = document.createElement('span');
+                  charSpan.textContent = char;
+                  charSpan.className = 'reveal-char animate-reveal';
+                  charSpan.style.animationDelay = `${globalCharIndex * 0.05}s`;
+                  wordSpan.appendChild(charSpan);
+                  globalCharIndex++;
+              });
+              
+              nameContainer.appendChild(wordSpan);
+          });
+      });
+    </script>
+</body>
+</html>

@@ -1,26 +1,309 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-neutral-950: #0a0a0a;
+  
+  --animate-reveal: reveal 0.8s cubic-bezier(0.2, 0.65, 0.3, 0.9) forwards;
+  --animate-fade-in: fadeIn 1s ease-out forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float 6s ease-in-out 3s infinite;
+  --animate-pulse-glow: pulseGlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-dash: dash 3s linear infinite;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes reveal {
+    0% { opacity: 0; transform: translateY(100%); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  @keyframes dash {
+    to { stroke-dashoffset: -110; }
+  }
+  @keyframes typing { 
+    from { width: 0 } 
+    to { width: 100% } 
+  }
+  @keyframes blink-caret { 
+    50% { border-color: transparent } 
+  }
+  @keyframes slideDown { 
+    from { opacity: 0; transform: translateY(-10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes stream {
+    0% { transform: translateY(100%) scaleY(0.5); opacity: 0; }
+    50% { opacity: 1; transform: translateY(0) scaleY(1); }
+    100% { transform: translateY(-100%) scaleY(0.5); opacity: 0; }
+  }
+  @keyframes flow-custom {
+    to { stroke-dashoffset: -1000; }
+  }
+  @keyframes scanner {
+    0%, 100% { transform: translateY(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0; }
+  }
+  @keyframes lottieDraw {
+    0% { stroke-dasharray: 60; stroke-dashoffset: 60; opacity: 0.5; }
+    40% { opacity: 1; }
+    100% { stroke-dasharray: 60; stroke-dashoffset: 0; opacity: 1; }
+  }
+  @keyframes lottiePop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  @keyframes lottieFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes lottieWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-8deg); }
+    75% { transform: rotate(8deg); }
+  }
+  @keyframes lottieRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes lottieSlideRight {
+    0% { transform: translateX(0); opacity: 1; }
+    50% { transform: translateX(4px); opacity: 0.8; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes lottieSwitch {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .animate-flow-custom {
+    animation: flow-custom 10s linear infinite;
+  }
+  .animate-scanner {
+    animation: scanner 3s ease-in-out infinite;
+  }
+  .lottie-stroke path, 
+  .lottie-stroke rect, 
+  .lottie-stroke circle, 
+  .lottie-stroke line, 
+  .lottie-stroke polyline {
+    animation: lottieDraw 3s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    stroke-dasharray: 60;
+  }
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .tech-tag {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.05);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    font-family: var(--font-jetbrains-mono), monospace;
+  }
+
+  .hero-image-mask {
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  }
+
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.5s;
+  }
+  .btn-shine:hover::before {
+    left: 100%;
+  }
+
+  .pattern-grid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .reveal-container {
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: bottom;
+  }
+  
+  .reveal-char {
+      display: inline-block;
+      transform: translateY(100%);
+      opacity: 0;
+  }
+
+  /* --- Aura Button Styles --- */
+  .btn-aura {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: white;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #0a0a0a;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .btn-aura:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+
+  .btn-aura .btn-svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .btn-aura:hover .btn-svg {
+    transform: rotate(90deg);
+  }
+
+  .btn-aura .txt-wrapper {
+    position: relative;
+    height: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn-aura .txt-1,
+  .btn-aura .txt-2 {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .btn-aura .txt-2 {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+
+  .btn-aura:hover .txt-1 {
+    transform: translateY(-100%);
+  }
+
+  .btn-aura:hover .txt-2 {
+    transform: translateY(-100%);
+  }
+
+  .btn-aura .btn-letter {
+    display: inline-block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  /* Staggered letter animation on hover could be added here if desired, 
+     but the block slide is cleaner for now as per the snippet logic. */
+
+  /* --- Glow Button Styles --- */
+  .btn-glow-border {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 9999px;
+    z-index: 1;
+  }
+  
+  .btn-glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+
+  .btn-glow-border:hover::before {
+    opacity: 1;
+  }
+
+  /* --- Generic Text Reveal Animation --- */
+  .reveal-text-wrapper {
+    position: relative;
+    height: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reveal-text-1,
+  .reveal-text-2 {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .reveal-text-2 {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+
+  .group:hover .reveal-text-1 {
+    transform: translateY(-100%);
+  }
+
+  .group:hover .reveal-text-2 {
+    transform: translateY(-100%);
+  }
 }
+
+/* Base styles */
+body {
+    background-color: #0a0a0a;
+    color: rgba(255, 255, 255, 0.9);
+    -webkit-font-smoothing: antialiased;
+}
+
