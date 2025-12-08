@@ -78,7 +78,7 @@ export default function Hero() {
                     <h1 className="font-bold tracking-tighter text-white leading-tight mb-6 drop-shadow-2xl">
                         <span className="block text-5xl md:text-6xl lg:text-7xl reveal-container">
                             <span ref={nameRef} id="name-target" className="flex flex-wrap gap-x-[0.1em]">
-                                Marco  Patzelt
+                                Marco Patzelt
                             </span>
                         </span>
                     </h1>
