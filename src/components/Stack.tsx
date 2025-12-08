@@ -19,7 +19,7 @@ export default function Stack() {
                     <span className="text-white/40">Kein Enterprise-Bloat. Nur Performance.</span>
                 </h2>
                 <p className="text-lg text-white/60 leading-relaxed max-w-2xl">
-                    Während Agenturen oft teure "Enterprise-Lösungen" verkaufen, die niemand braucht, setze ich auf 
+                    Ich baue Software-Infrastruktur, die keine eigene IT-Abteilung zur Wartung benötigt. 
                     <span className="text-white font-medium"> Lean Architecture</span>. 
                     Das bedeutet: Maximale Geschwindigkeit, keine unnötigen Lizenzkosten und volle Unabhängigkeit von trägen Systemen.
                 </p>
