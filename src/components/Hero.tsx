@@ -121,7 +121,7 @@ export default function Hero() {
                 <div className="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center opacity-0 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                     
                         {/* Main Image Container */}
-                        <div className="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-visible">
+                        <div className="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-visible mx-auto">
                             {/* Placeholder Image (Replace SRC with your own) */}
                             {/* Ambient Light Glow - Fainter */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/30 via-purple-500/30 to-orange-500/30 blur-[80px] -z-10 rounded-full scale-110 opacity-30"></div>
@@ -136,7 +136,7 @@ export default function Hero() {
                             />
                             
                             {/* Floating Card 1: Vercel */}
-                        <div className="absolute -left-2 top-16 glass-card p-3 rounded-xl flex items-center gap-3 animate-float border-l border-white/20 shadow-xl shadow-black/50 backdrop-blur-md">
+                        <div className="absolute -left-4 top-48 glass-card p-3 rounded-xl flex items-center gap-3 animate-float border-l border-white/20 shadow-xl shadow-black/50 backdrop-blur-md">
                             <div className="bg-black p-1.5 rounded-md border border-white/10">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 text-white"><path d="M24 22.525H0l12-21.05 12 21.05z" fill="white"/></svg>
                             </div>
