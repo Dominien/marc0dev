@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import EngineeringMindset from "@/components/EngineeringMindset";
+
 import Work from "@/components/Work";
 import Stack from "@/components/Stack";
 import TechStack from "@/components/TechStack";
@@ -35,7 +35,7 @@ export default function Home() {
         <TechStack />
         <Work />
         <FrontendEngineering />
-        <EngineeringMindset />
+
         <CTA />
       </main>
     </>
