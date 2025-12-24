@@ -5,6 +5,7 @@ import Stack from "@/components/Stack";
 import TechStack from "@/components/TechStack";
 import FrontendEngineering from "@/components/FrontendEngineering";
 import CTA from "@/components/CTA";
+import Innovation from "@/components/Innovation";
 
 export default function Home() {
   return (
@@ -33,8 +34,9 @@ export default function Home() {
         <Hero />
         <Stack />
         <TechStack />
-        <Work />
         <FrontendEngineering />
+        <Innovation />
+        <Work />
 
         <CTA />
       </main>
