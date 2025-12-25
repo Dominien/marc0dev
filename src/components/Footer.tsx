@@ -1,7 +1,14 @@
+"use client";
+
 import { Github, Linkedin, Mail, Twitter, Instagram } from 'lucide-react';
 import Link from 'next/link';
+import { useLocale } from '@/i18n/LocaleContext';
 
 export default function Footer() {
+  const { dictionary } = useLocale();
+  const t = dictionary.footer;
+  const tn = dictionary.navbar; // Reuse navbar links
+
   return (
     <footer className="max-w-7xl mx-auto px-6 mb-12">
       <div className="bg-center animate-entry delay-200 animate-on-scroll bg-gradient-to-tr from-gray-500/0 via-gray-500/10 to-gray-500/0 w-full bg-cover rounded-3xl pt-16 pr-6 pb-6 pl-6 relative overflow-hidden border border-white/5">
@@ -43,49 +50,49 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-white mb-4 text-sm font-medium font-sans">Navigation</h4>
+            <h4 className="text-white mb-4 text-sm font-medium font-sans">{t.navigation}</h4>
             <ul className="space-y-3 text-sm text-neutral-400">
               <li>
                 <Link href="#stack" className="hover:text-white transition-colors font-sans">
-                  Architektur
+                  {tn.architektur}
                 </Link>
               </li>
               <li>
                 <Link href="#frontend" className="hover:text-white transition-colors font-sans">
-                  Engineering
+                  {tn.engineering}
                 </Link>
               </li>
               <li>
                 <Link href="#tech-stack" className="hover:text-white transition-colors font-sans">
-                  Tech Stack
+                  {tn.techstack}
                 </Link>
               </li>
               <li>
                 <Link href="#work" className="hover:text-white transition-colors font-sans">
-                  Projekte
+                  {tn.projekte}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-white mb-4 text-sm font-medium font-sans">Rechtliches</h4>
+            <h4 className="text-white mb-4 text-sm font-medium font-sans">{t.legal}</h4>
             <ul className="space-y-3 text-sm text-neutral-400">
               <li>
                 <Link href="/impressum" className="hover:text-white transition-colors font-sans">
-                  Impressum
+                  {t.impressum}
                 </Link>
               </li>
               <li>
                 <Link href="/datenschutz" className="hover:text-white transition-colors font-sans">
-                  Datenschutz
+                  {t.datenschutz}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-white mb-4 text-sm font-medium font-sans">Kontakt</h4>
+            <h4 className="text-white mb-4 text-sm font-medium font-sans">{t.contact}</h4>
             <ul className="space-y-3 text-sm text-neutral-400">
               <li>
               <a href="mailto:marcopatzelt7@gmail.com" className="hover:text-white transition-colors font-sans">
@@ -101,7 +108,7 @@ export default function Footer() {
 
         <div className="max-w-7xl mx-auto px-6 mt-16 flex flex-col items-start gap-4 text-xs text-neutral-500 font-sans relative z-10">
           <p className="font-sans">
-            © 2025 Marco Patzelt. All rights reserved.
+            {t.rights}
           </p>
         </div>
 

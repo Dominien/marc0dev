@@ -1,6 +1,12 @@
+"use client";
+
 import { Code2, LayoutTemplate, Zap, GitGraph, ScanEye, Blocks } from 'lucide-react';
+import { useLocale } from '@/i18n/LocaleContext';
 
 export default function FrontendEngineering() {
+  const { dictionary } = useLocale();
+  const t = dictionary.frontend;
+
   return (
     <section id="frontend" className="py-24 px-4 bg-black relative overflow-hidden">
       
@@ -18,14 +24,14 @@ export default function FrontendEngineering() {
           <div className="relative z-10 text-center max-w-4xl mx-auto mb-20">
             <div className="inline-flex gap-2 uppercase text-xs font-bold text-white tracking-widest font-geist bg-white/5 border-white/10 border rounded-full mb-8 pt-2 pr-4 pb-2 pl-4 backdrop-blur-md gap-x-2 gap-y-2 items-center">
               <Code2 className="w-4 h-4" />
-              Frontend Engineering
+              {t.label}
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-7xl tracking-tighter text-white mb-8 leading-[1.05] font-geist">
-              Design-Umsetzung &
-              <span className="text-gray-600 block sm:inline sm:ml-4 font-geist">System-Integration.</span>
-            </h2>
+            <h2 
+                className="text-4xl sm:text-5xl lg:text-7xl tracking-tighter text-white mb-8 leading-[1.05] font-geist"
+                dangerouslySetInnerHTML={{ __html: t.title }}
+            />
             <p className="text-gray-400 text-lg sm:text-xl font-light leading-relaxed max-w-2xl mx-auto font-geist">
-              Ich realisiere vollständige Web-Interfaces, die visuell überzeugen und technisch nahtlos mit der darunterliegenden Architektur verschmelzen.
+              {t.description}
             </p>
           </div>
 
@@ -47,7 +53,7 @@ export default function FrontendEngineering() {
               </div>
 
               <p className="mt-4 text-sm font-medium text-gray-500 uppercase tracking-widest opacity-0 group-hover/card:opacity-100 transform translate-y-2 group-hover/card:translate-y-0 transition-all duration-500 font-geist absolute bottom-8 z-20">
-                Visual Fidelity
+                {t.cards.visual}
               </p>
             </div>
 
@@ -57,12 +63,12 @@ export default function FrontendEngineering() {
                 <LayoutTemplate className="w-10 h-10 text-white" />
               </div>
               <p className="text-lg text-gray-300 font-light leading-relaxed tracking-tight font-geist">
-                "Aus statischen Layouts werden funktionale, responsive Webseiten. Ich übersetze Designs exakt in Code."
+                {t.cards.pixel.quote}
               </p>
               <div className="flex items-center gap-3 mt-6 pt-6 border-t border-white/5">
                 <div>
-                  <div className="text-sm font-semibold text-white font-geist">Pixel-Perfekt</div>
-                  <div className="text-xs text-gray-500 font-geist">Implementation</div>
+                  <div className="text-sm font-semibold text-white font-geist">{t.cards.pixel.title}</div>
+                  <div className="text-xs text-gray-500 font-geist">{t.cards.pixel.subtitle}</div>
                 </div>
               </div>
             </div>
@@ -80,7 +86,7 @@ export default function FrontendEngineering() {
               </div>
 
               <p className="mt-4 text-sm font-medium text-gray-500 uppercase tracking-widest opacity-0 group-hover/card:opacity-100 transform translate-y-2 group-hover/card:translate-y-0 transition-all duration-500 font-geist absolute bottom-8 z-20">
-                Type Safety
+                {t.cards.type_safety}
               </p>
             </div>
 
@@ -93,12 +99,12 @@ export default function FrontendEngineering() {
                 <Zap className="w-10 h-10 text-white" />
               </div>
               <p className="text-lg text-gray-300 font-light leading-relaxed tracking-tight font-geist">
-                "Ich hauche dem Design Leben ein. Wie verhalten sich Filter? Was passiert beim Klick? Ich entwickle die Interaktions-Logik."
+                {t.cards.interaction.quote}
               </p>
               <div className="flex items-center gap-3 mt-6 pt-6 border-t border-white/5">
                 <div>
-                  <div className="text-sm font-semibold text-white font-geist">Interaktions-Logik</div>
-                  <div className="text-xs text-gray-500 font-geist">Behavior</div>
+                  <div className="text-sm font-semibold text-white font-geist">{t.cards.interaction.title}</div>
+                  <div className="text-xs text-gray-500 font-geist">{t.cards.interaction.subtitle}</div>
                 </div>
               </div>
             </div>
@@ -113,7 +119,7 @@ export default function FrontendEngineering() {
               {/* No Icon Here */}
 
               <p className="mt-4 text-sm font-medium text-gray-500 uppercase tracking-widest opacity-0 group-hover/card:opacity-100 transform translate-y-2 group-hover/card:translate-y-0 transition-all duration-500 font-geist absolute bottom-8 z-20">
-                User Experience
+                {t.cards.user_experience}
               </p>
             </div>
 
@@ -123,12 +129,12 @@ export default function FrontendEngineering() {
                 <GitGraph className="w-10 h-10 text-white" />
               </div>
               <p className="text-lg text-gray-300 font-light leading-relaxed tracking-tight font-geist">
-                "Das Frontend ist kein isolierter Anstrich, sondern das passgenaue Gegenstück zum Backend. Datenstrukturen greifen perfekt ineinander."
+                {t.cards.architecture.quote}
               </p>
               <div className="flex items-center gap-3 mt-6 pt-6 border-t border-white/5">
                 <div>
-                  <div className="text-sm font-semibold text-white font-geist">Architektur</div>
-                  <div className="text-xs text-gray-500 font-geist">Integration</div>
+                  <div className="text-sm font-semibold text-white font-geist">{t.cards.architecture.title}</div>
+                  <div className="text-xs text-gray-500 font-geist">{t.cards.architecture.subtitle}</div>
                 </div>
               </div>
             </div>

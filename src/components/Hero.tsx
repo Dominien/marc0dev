@@ -5,8 +5,11 @@ import { ArrowUpRight, Server, Mail } from 'lucide-react';
 import ShimmerButton from '@/components/ui/ShimmerButton';
 import Script from 'next/script';
 import Image from 'next/image';
+import { useLocale } from '@/i18n/LocaleContext';
 
 export default function Hero() {
+  const { dictionary } = useLocale();
+  const t = dictionary.hero;
   const nameRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -87,27 +90,26 @@ export default function Hero() {
                     <div className="space-y-8 opacity-0 animate-fade-in" style={{ animationDelay: '0.6s' }}>
                         <div className="pl-4 border-l-2 border-white/20">
                             <h2 className="text-lg md:text-xl font-mono text-white/90 tracking-tight mb-3">
-                                Full-Stack Engineer & Integration Specialist
+                                {t.role}
                             </h2>
                             {/* UPDATED TEXT: Higher contrast (text-white) and normal font weight */}
                             <p className="text-lg text-white max-w-lg font-normal leading-relaxed drop-shadow-xl">
-                                Spezialisiert auf die Entkopplung von Frontends und komplexer Business-Logik. Ich entwickle skalierbare Middleware und robuste Backends.
+                                {t.pitch}
                             </p>
                         </div>
                         
 
-
                         {/* ACTIONS (Refined Buttons) */}
                         <div className="flex flex-col sm:flex-row items-start gap-4 animate-slide-up-fade" style={{ animationDelay: '200ms' }}>
                             <ShimmerButton 
-                              text="Lass uns sprechen"
+                              text={t.cta_primary}
                               href="mailto:marcopatzelt7@gmail.com"
                               className="shadow-2xl"
                               icon={<Mail className="w-4 h-4" />}
                             />
                             
                             <ShimmerButton 
-                              text="Projekte ansehen"
+                              text={t.cta_secondary}
                               href="#work"
                               variant="secondary"
                               icon={<ArrowUpRight className="w-4 h-4" />}
@@ -141,8 +143,8 @@ export default function Hero() {
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 text-white"><path d="M24 22.525H0l12-21.05 12 21.05z" fill="white"/></svg>
                             </div>
                             <div className="pr-2">
-                                <div className="text-[9px] text-white/50 font-mono uppercase tracking-wider">Architecture</div>
-                                <div className="text-xs font-semibold text-white">Serverless</div>
+                                <div className="text-[9px] text-white/50 font-mono uppercase tracking-wider">{t.card_arch.title}</div>
+                                <div className="text-xs font-semibold text-white">{t.card_arch.value}</div>
                             </div>
                         </div>
 
@@ -152,8 +154,8 @@ export default function Hero() {
                                 <Server className="w-4 h-4 text-green-400" />
                             </div>
                             <div className="pr-2">
-                                <div className="text-[9px] text-white/50 font-mono uppercase tracking-wider">Backend</div>
-                                <div className="text-xs font-semibold text-white">Node.js</div>
+                                <div className="text-[9px] text-white/50 font-mono uppercase tracking-wider">{t.card_backend.title}</div>
+                                <div className="text-xs font-semibold text-white">{t.card_backend.value}</div>
                             </div>
                         </div>
 

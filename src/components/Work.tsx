@@ -1,7 +1,13 @@
+"use client";
+
 import { ArrowRight, Smartphone, Tablet, Monitor, LayoutTemplate, Webhook, Database, CheckCircle, Server, RefreshCw, Zap, Languages, Lock, Globe, Cpu } from 'lucide-react';
 import ShimmerButton from '@/components/ui/ShimmerButton';
+import { useLocale } from '@/i18n/LocaleContext';
 
 export default function Work() {
+  const { dictionary } = useLocale();
+  const t = dictionary.work;
+
   return (
     <section id="work" className="py-32 max-w-7xl mx-auto px-6 overflow-hidden">
         <div className="grid lg:grid-cols-2 lg:gap-24 z-10 relative gap-x-12 gap-y-16 items-center">
@@ -10,32 +16,30 @@ export default function Work() {
             <div className="order-2 lg:order-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white/60 mb-6">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-                    Featured Project
+                    {t.featured}
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-white mb-6 leading-[1.1] font-sans font-bold">
-                    Automatisierte <br/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">
-                        Event-Buchungsarchitektur
-                    </span>
-                </h2>
+                <h2 
+                    className="text-3xl sm:text-4xl lg:text-5xl tracking-tighter text-white mb-6 leading-[1.1] font-sans font-bold"
+                    dangerouslySetInnerHTML={{ __html: t.title }}
+                />
 
                 
                 <div className="space-y-10 mb-10">
                     <div>
                         <h3 className="text-white font-medium mb-3 flex items-center gap-2">
                             <span className="w-1 h-4 bg-blue-500 rounded-full"></span>
-                            Die Aufgabe
+                            {t.task.title}
                         </h3>
                         <p className="text-white/60 text-lg font-light leading-relaxed pl-3 border-l border-white/5">
-                            Technische Konzeption und Entwicklung einer Schnittstelle, die ein Webflow-Frontend mit Microsoft Dynamics 365 verbindet, um komplexe Buchungsprozesse ohne Enterprise-Overhead abzubilden.
+                            {t.task.desc}
                         </p>
                     </div>
                     
                     <div>
                         <h3 className="text-white font-medium mb-4 flex items-center gap-2">
                             <span className="w-1 h-4 bg-white/40 rounded-full"></span>
-                            Die Umsetzung
+                            {t.solution.title}
                         </h3>
                         <div className="grid sm:grid-cols-2 gap-3">
                             {/* Card 1: Middleware (Blue Accent - Primary Tech) */}
@@ -45,8 +49,8 @@ export default function Work() {
                                         <Server className="w-4 h-4" />
                                     </div>
                                     <div>
-                                        <div className="text-sm font-medium text-white mb-1">Middleware Engineering</div>
-                                        <div className="text-xs text-white/50 leading-relaxed">Node.js Applikation (Vercel) zur Entkopplung der Systemlogik.</div>
+                                        <div className="text-sm font-medium text-white mb-1">{t.solution.card_middleware.title}</div>
+                                        <div className="text-xs text-white/50 leading-relaxed">{t.solution.card_middleware.desc}</div>
                                     </div>
                                 </div>
                             </div>
@@ -58,8 +62,8 @@ export default function Work() {
                                         <RefreshCw className="w-4 h-4" />
                                     </div>
                                     <div>
-                                        <div className="text-sm font-medium text-white mb-1">Daten-Synchronisation</div>
-                                        <div className="text-xs text-white/50 leading-relaxed">Echtzeit-Abgleich für Buchungen.</div>
+                                        <div className="text-sm font-medium text-white mb-1">{t.solution.card_sync.title}</div>
+                                        <div className="text-xs text-white/50 leading-relaxed">{t.solution.card_sync.desc}</div>
                                     </div>
                                 </div>
                             </div>
@@ -71,8 +75,8 @@ export default function Work() {
                                         <Zap className="w-4 h-4" />
                                     </div>
                                     <div>
-                                        <div className="text-sm font-medium text-white mb-1">High-Performance Caching</div>
-                                        <div className="text-xs text-white/50 leading-relaxed">Upstash (Redis).</div>
+                                        <div className="text-sm font-medium text-white mb-1">{t.solution.card_caching.title}</div>
+                                        <div className="text-xs text-white/50 leading-relaxed">{t.solution.card_caching.desc}</div>
                                     </div>
                                 </div>
                             </div>
@@ -84,8 +88,8 @@ export default function Work() {
                                         <Languages className="w-4 h-4" />
                                     </div>
                                     <div>
-                                        <div className="text-sm font-medium text-white mb-1">Translation Pipeline</div>
-                                        <div className="text-xs text-white/50 leading-relaxed">DeepL Integration.</div>
+                                        <div className="text-sm font-medium text-white mb-1">{t.solution.card_translation.title}</div>
+                                        <div className="text-xs text-white/50 leading-relaxed">{t.solution.card_translation.desc}</div>
                                     </div>
                                 </div>
                             </div>
@@ -97,14 +101,14 @@ export default function Work() {
 
                 <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-white/5">
                     <ShimmerButton 
-                        text="Zum Live-Projekt" 
+                        text={t.cta_project}
                         href="https://www.european-speed-club.com/" 
                         target="_blank"
                         icon={<ArrowRight className="w-4 h-4" />}
                     />
                     <div className="text-xs text-white/40 flex items-center gap-2 max-w-[200px] leading-tight font-mono">
                         <span className="w-1.5 h-1.5 rounded-full bg-white/20 shrink-0"></span>
-                        Realisiert bei Marketer UX GmbH.
+                        {t.credits}
                     </div>
                 </div>
             </div>
@@ -114,8 +118,8 @@ export default function Work() {
                 
                 {/* Diagram Header Labels */}
                 <div className="w-full flex justify-between text-[10px] uppercase tracking-widest text-white/30 font-mono mb-2 px-4 max-w-[400px]">
-                    <span>Frontend</span>
-                    <span>Backend/CRM</span>
+                    <span>{t.diagram.frontend}</span>
+                    <span>{t.diagram.backend}</span>
                 </div>
 
                 {/* Icons Row (Sources) */}
@@ -182,8 +186,8 @@ export default function Work() {
                                     <div className="absolute inset-0 bg-blue-400/20 animate-pulse"></div>
                                 </div>
                                 <div>
-                                    <div className="text-[10px] font-bold text-white uppercase tracking-wider">Middleware</div>
-                                    <div className="text-xs text-white/60">Vercel Serverless</div>
+                                    <div className="text-[10px] font-bold text-white uppercase tracking-wider">{t.diagram.middleware}</div>
+                                    <div className="text-xs text-white/60">{t.diagram.serverless}</div>
                                 </div>
                             </div>
                             <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] animate-pulse"></div>
@@ -207,7 +211,7 @@ export default function Work() {
                                     <div className="w-6 h-6 rounded bg-white/5 flex items-center justify-center shrink-0">
                                         <Zap className="w-3 h-3 text-white/60" />
                                     </div>
-                                    <div className="text-[9px] font-bold text-white/60 uppercase">Redis Lock</div>
+                                    <div className="text-[9px] font-bold text-white/60 uppercase">{t.diagram.redis_lock}</div>
                                 </div>
                                 {/* JSON Snippet: Redis */}
                                 <div className="w-full bg-black/50 rounded p-2 border border-white/5 font-mono text-[8px] leading-relaxed text-white/40">
@@ -225,7 +229,7 @@ export default function Work() {
                                     <div className="w-6 h-6 rounded bg-white/5 flex items-center justify-center shrink-0">
                                         <Languages className="w-3 h-3 text-white/60" />
                                     </div>
-                                    <div className="text-[9px] font-bold text-white/60 uppercase">DeepL API</div>
+                                    <div className="text-[9px] font-bold text-white/60 uppercase">{t.diagram.deepl_api}</div>
                                 </div>
                                 {/* JSON Snippet: DeepL */}
                                 <div className="w-full bg-black/50 rounded p-2 border border-white/5 font-mono text-[8px] leading-relaxed text-white/40">
@@ -250,7 +254,7 @@ export default function Work() {
                                 <div className="absolute inset-0 bg-blue-400/20 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
                             </div>
                             <div>
-                                <div className="text-[10px] font-bold text-white/40 uppercase tracking-wider">CRM Sync</div>
+                                <div className="text-[10px] font-bold text-white/40 uppercase tracking-wider">{t.diagram.crm_sync}</div>
                                 <div className="text-xs text-white/80">Microsoft Dynamics 365</div>
                             </div>
                             <div className="ml-auto opacity-50 text-blue-400">

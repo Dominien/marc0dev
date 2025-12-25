@@ -55,13 +55,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className="scroll-smooth">
+    <html className="scroll-smooth">
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-neutral-950 text-white/90 selection:bg-white/20 selection:text-white`}
       >
-        <Navbar />
         {children}
-        <Footer />
       </body>
     </html>
   );

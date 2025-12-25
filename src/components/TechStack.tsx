@@ -1,8 +1,14 @@
+"use client";
+
 import { 
   FileCode, Server, Zap, Database, Layers, Triangle, GitBranch, Wind, Atom, Sparkles 
 } from 'lucide-react';
+import { useLocale } from '@/i18n/LocaleContext';
 
 export default function TechStack() {
+  const { dictionary } = useLocale();
+  const t = dictionary.techstack;
+
   return (
     <section id="tech-stack" className="overflow-visible w-full pt-24 pb-24 relative bg-black">
         
@@ -18,11 +24,10 @@ export default function TechStack() {
         {/* Header Content */}
         <div className="relative z-10 text-center mb-20">
           <h2 className="text-4xl font-medium tracking-tight text-white sm:text-5xl">
-            Entwickelt mit
+            {t.title}
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg font-light text-slate-400 leading-relaxed">
-            Best-in-Class Tooling. Ich setze auf einen modernen, bewährten Stack mit großer Community und langfristigem Support. 
-            Keine Experimente, sondern Industriestandards.
+            {t.description}
           </p>
         </div>
 
@@ -66,7 +71,7 @@ export default function TechStack() {
             <path className="animate-flow-custom" strokeDasharray="20, 1000" strokeDashoffset="-100" d="M 500,100 C 500,300 500,350 500,390" fill="none" stroke="#60a5fa" strokeWidth="2" filter="url(#glow)" style={{ animationDuration: '6s', opacity: 0.8, strokeLinecap: 'round' }}></path>
             <path className="animate-flow-custom" strokeDasharray="20, 1000" strokeDashoffset="-300" d="M 700,100 C 700,300 520,350 500,390" fill="none" stroke="#60a5fa" strokeWidth="2" filter="url(#glow)" style={{ animationDuration: '9s', opacity: 0.8, strokeLinecap: 'round' }}></path>
             <path className="animate-flow-custom" strokeDasharray="20, 1000" strokeDashoffset="-150" d="M 900,100 C 900,300 550,350 500,390" fill="none" stroke="#60a5fa" strokeWidth="2" filter="url(#glow)" style={{ animationDuration: '8.5s', opacity: 0.8, strokeLinecap: 'round' }}></path>
-
+            
             {/* Row 2 */}
             <path className="animate-flow-custom" strokeDasharray="20, 800" strokeDashoffset="-50" d="M 100,250 C 100,350 450,380 500,390" fill="none" stroke="#60a5fa" strokeWidth="2" filter="url(#glow)" style={{ animationDuration: '7.5s', opacity: 0.8, strokeLinecap: 'round' }}></path>
             <path className="animate-flow-custom" strokeDasharray="20, 800" strokeDashoffset="-250" d="M 300,250 C 300,350 480,380 500,390" fill="none" stroke="#60a5fa" strokeWidth="2" filter="url(#glow)" style={{ animationDuration: '6.5s', opacity: 0.8, strokeLinecap: 'round' }}></path>

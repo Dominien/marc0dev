@@ -1,45 +1,16 @@
-import Hero from "@/components/Hero";
 
-import Work from "@/components/Work";
-import Stack from "@/components/Stack";
-import TechStack from "@/components/TechStack";
-import FrontendEngineering from "@/components/FrontendEngineering";
-import CTA from "@/components/CTA";
-import Innovation from "@/components/Innovation";
+"use client";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: "Marco Patzelt",
-            url: "https://marc0.dev",
-            jobTitle: "Full-Stack Engineer & Integration Specialist",
-            description: "Spezialisiert auf Node.js Middleware, Vercel und Enterprise-Integration.",
-            sameAs: [
-              "https://github.com/Dominien",
-              "https://linkedin.com/in/marco-patzelt-2574b1257/",
-              "https://x.com/Marc0dev"
-            ],
-            knowsAbout: ["Full-Stack Development", "Node.js", "React", "Next.js", "Vercel", "TypeScript", "System Integration"],
-            image: "https://marc0.dev/marco-hero.png", // Pointing to the hero image
-          }),
-        }}
-      />
-      <main>
-        <Hero />
-        <Stack />
-        <TechStack />
-        <FrontendEngineering />
-        <Innovation />
-        <Work />
+export default function RootPage() {
+  const router = useRouter();
 
-        <CTA />
-      </main>
-    </>
-  );
+  useEffect(() => {
+    const browserLang = navigator.language || (navigator.languages && navigator.languages[0]);
+    const targetLang = (browserLang && browserLang.startsWith('de')) ? 'de' : 'en';
+    router.replace(`/${targetLang}`);
+  }, [router]);
+
+  return <div className="bg-black min-h-screen" />;
 }

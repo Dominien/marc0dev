@@ -1,6 +1,12 @@
+"use client";
+
 import { Server, ShieldCheck, Database, Layers, Activity, Box, GitPullRequest, Zap, Cpu, Network } from 'lucide-react';
+import { useLocale } from '@/i18n/LocaleContext';
 
 export default function Stack() {
+  const { dictionary } = useLocale();
+  const t = dictionary.stack;
+
   return (
     <section id="stack" className="py-32 bg-black relative overflow-hidden">
         
@@ -15,14 +21,13 @@ export default function Stack() {
             {/* Section Header */}
             <div className="mb-20 max-w-3xl">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
-                    Lean Architecture: <br />
-                    <span className="text-white/40">Kein Enterprise-Bloat. Nur Performance.</span>
+                    {t.title} <br />
+                    <span className="text-white/40">{t.subtitle}</span>
                 </h2>
-                <p className="text-lg text-white/60 leading-relaxed max-w-2xl">
-                    Ich baue Software-Infrastruktur, die keine eigene IT-Abteilung zur Wartung benötigt. 
-                    <span className="text-white font-medium"> Lean Architecture</span>. 
-                    Das bedeutet: Maximale Geschwindigkeit, keine unnötigen Lizenzkosten und volle Unabhängigkeit von trägen Systemen.
-                </p>
+                <p 
+                    className="text-lg text-white/60 leading-relaxed max-w-2xl"
+                    dangerouslySetInnerHTML={{ __html: t.description }} 
+                />
             </div>
 
             {/* Main Feature Card: Infrastructure & TypeScript */}
@@ -37,27 +42,25 @@ export default function Stack() {
                             <Server className="w-6 h-6 text-white" />
                         </div>
                         
-                        <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-6">
-                            Infrastruktur & <br /> Typsicherheit
-                        </h2>
+                        <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-6" dangerouslySetInnerHTML={{ __html: t.card_infra.title }} />
                         
                         <div className="space-y-8 text-lg text-white/50 leading-relaxed">
                             <div>
                                 <h3 className="text-white font-medium mb-2 flex items-center gap-2">
                                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                                    Serverless statt Server-Farm
+                                    {t.card_infra.serverless_title}
                                 </h3>
                                 <p className="text-sm">
-                                    Keine Wartung, keine Downtime. Deployment in Serverless-Umgebungen (z.B. Vercel) bedeutet, dass Rechenleistung nur dann bezahlt wird, wenn sie auch genutzt wird.
+                                    {t.card_infra.serverless_desc}
                                 </p>
                             </div>
                             <div>
                                 <h3 className="text-white font-medium mb-2 flex items-center gap-2">
                                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                                    TypeScript Logic
+                                    {t.card_infra.typescript_title}
                                 </h3>
                                 <p className="text-sm">
-                                    Strenge Typisierung verhindert Fehler, bevor sie passieren. Das Resultat ist eine extrem stabile Code-Basis, die auch bei komplexen Features nicht zusammenbricht.
+                                    {t.card_infra.typescript_desc}
                                 </p>
                             </div>
                         </div>
@@ -96,14 +99,14 @@ export default function Stack() {
                                 {/* Header */}
                                 <div className="p-5 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
                                     <div>
-                                        <h4 className="text-white font-sans text-sm tracking-wide">System Status</h4>
+                                        <h4 className="text-white font-sans text-sm tracking-wide">{t.visuals.status_title}</h4>
                                         <div className="flex items-center gap-2 mt-1">
                                             <span className="relative flex h-2 w-2 shrink-0">
                                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                                             </span>
                                             <p className="text-emerald-500 text-xs font-sans tracking-wide overflow-hidden whitespace-nowrap border-r-2 border-emerald-500 w-0 animate-[typing_1.5s_steps(30,end)_2.5s_forwards,blink-caret_0.75s_step-end_infinite]">
-                                                All Systems Operational
+                                                {t.visuals.status_ok}
                                             </p>
                                         </div>
                                     </div>
@@ -121,7 +124,7 @@ export default function Stack() {
                                                 <Server className="w-4 h-4" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className="text-gray-200">API Gateway</span>
+                                                <span className="text-gray-200">{t.visuals.api_gateway}</span>
                                                 <span className="text-gray-500 text-xs mt-0.5">eu-central-1</span>
                                             </div>
                                         </div>
@@ -142,8 +145,8 @@ export default function Stack() {
                                                 <Database className="w-4 h-4" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className="text-gray-200">Postgres Replica</span>
-                                                <span className="text-gray-500 text-xs mt-0.5">read-only</span>
+                                                <span className="text-gray-200">{t.visuals.postgres}</span>
+                                                <span className="text-gray-500 text-xs mt-0.5">{t.visuals.read_only}</span>
                                             </div>
                                         </div>
                                          <div className="flex items-center gap-2">
@@ -190,7 +193,7 @@ export default function Stack() {
                             {/* Floating Badge */}
                             <div className="absolute bottom-8 bg-neutral-900/80 backdrop-blur border border-green-500/20 px-3 py-1 rounded-full flex items-center gap-2 shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                                <span className="text-[10px] font-mono text-green-400">REALTIME SYNC</span>
+                                <span className="text-[10px] font-mono text-green-400">{t.visuals.realtime}</span>
                             </div>
                         </div>
                     </div>
@@ -199,13 +202,13 @@ export default function Stack() {
                     <div className="mt-auto p-10">
                         <div className="flex items-center gap-3 mb-5">
                             <Database className="w-6 h-6 text-white" />
-                            <h3 className="text-xl font-semibold text-white tracking-tight">Backend & Daten</h3>
+                            <h3 className="text-xl font-semibold text-white tracking-tight">{t.card_backend.title}</h3>
                         </div>
                         <p className="text-white/50 text-base leading-relaxed mb-4">
-                            Backend-as-a-Service mit Supabase (PostgreSQL).
+                            {t.card_backend.desc}
                         </p>
                         <p className="text-sm text-white/40 leading-relaxed">
-                            <strong className="text-white/70">Der Vorteil:</strong> Die gleiche Power wie Enterprise-Systeme, aber ohne den Overhead. Daten werden in Echtzeit synchronisiert – extrem schnell und skalierbar.
+                            <strong className="text-white/70">{t.card_backend.highlight}</strong> {t.card_backend.highlight_desc}
                         </p>
                     </div>
                 </div>
@@ -289,13 +292,13 @@ export default function Stack() {
                     <div className="mt-auto p-10">
                         <div className="flex items-center gap-3 mb-5">
                             <Layers className="w-6 h-6 text-white" />
-                            <h3 className="text-xl font-semibold text-white tracking-tight">Modulare Architektur</h3>
+                            <h3 className="text-xl font-semibold text-white tracking-tight">{t.card_modules.title}</h3>
                         </div>
                         <p className="text-white/50 text-base leading-relaxed mb-4">
-                            Unabhängige Komponenten, flexibel verbunden.
+                            {t.card_modules.desc}
                         </p>
                         <p className="text-sm text-white/40 leading-relaxed">
-                            <strong className="text-white/70">Das Prinzip:</strong> Es geht nicht nur um APIs, sondern um echte Entkopplung. Teile des Systems können unabhängig voneinander funktionieren, ausgetauscht oder skaliert werden.
+                            <strong className="text-white/70">{t.card_modules.highlight}</strong> {t.card_modules.highlight_desc}
                         </p>
                     </div>
                 </div>
