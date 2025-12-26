@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import Mermaid from '@/components/Mermaid';
-import CodeSnippet from '@/components/CodeSnippet';
+
 
 
 interface BlogPostPageProps {
@@ -40,32 +40,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (!post) {
     notFound();
   }
-
-  // Calculate split index for "middle" placement
-  const content = post.content_md || '';
-  let splitIndex = Math.floor(content.length / 2);
-
-  // Adjust split index to the nearest double newline to avoid breaking paragraphs
-  const nextSafeBreak = content.indexOf('\n\n', splitIndex);
-  if (nextSafeBreak !== -1) {
-    splitIndex = nextSafeBreak;
-  }
-
-  // Ensure we are not inside a code block (odd number of backticks means inside)
-  const textBefore = content.substring(0, splitIndex);
-  const backtickCount = (textBefore.match(/```/g) || []).length;
-  if (backtickCount % 2 !== 0) {
-    // If inside code block, find the next closure
-    const nextCodeBlockEnd = content.indexOf('```', splitIndex);
-    if (nextCodeBlockEnd !== -1) {
-      // Move past the closing ``` and any following newline
-      splitIndex = content.indexOf('\n\n', nextCodeBlockEnd);
-      if (splitIndex === -1) splitIndex = content.length; // Fallback to end
-    }
-  }
-
-  const part1 = content.substring(0, splitIndex);
-  const part2 = content.substring(splitIndex);
 
   return (
     <main className="min-h-screen pt-32 pb-24 px-6">
@@ -128,13 +102,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
 
           <ReactMarkdown>
-            {part1}
-          </ReactMarkdown>
-
-          <CodeSnippet data={post.code_snippet} />
-
-          <ReactMarkdown>
-            {part2}
+            {post.content_md}
           </ReactMarkdown>
         </article>
 

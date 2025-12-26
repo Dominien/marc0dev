@@ -14,39 +14,27 @@ envContent.split('\n').forEach(line => {
 const supabase = createClient(env.SUPABASE_URL_MARCO, env.SUPABASE_SERVICE_KEY_MARCO);
 
 const newMermaidGraph = `graph TD
-    %% Force vertical stacking
-    Old_Way ~~~ New_Way
-
-    subgraph Old_Way [The Liability: Static Middleware]
-        A[Request] --> B[Controller]
-        B --> C[Service]
-        C --> D[ORM]
-        D --> E[(DB)]
-        B -.->|Breaks| A
+    subgraph "Static (Old)"
+        A["User"] --> B["API"]
+        B -->|"Hardcoded SQL"| C["DB"]
     end
-
-    subgraph New_Way [The Value: Agentic Orchestration]
-        F[Question] --> G[Agentic Layer]
-        G -->|Gemini 3 Pro| H{Context}
-        H -->|SQL| I[(DB)]
-        I -->|Data| G
-        G -->|Answer| F
+===
+graph TD
+    subgraph "Agentic (New)"
+        D["User"] --> E["Agent (Gemini)"]
+        E -->|"1. Read Schema"| F["Schema"]
+        E -->|"2. Gen. Code"| G["Runtime Exec"]
+        G -->|"Dynamic Query"| H["DB / API"]
     end
-
-    %% Styles
-    classDef default fill:#171717,stroke:#404040,color:#fff,stroke-width:1px;
-    classDef highlight fill:#1e3a8a,stroke:#3b82f6,color:#fff,stroke-width:2px;
-    classDef agent fill:#0f172a,stroke:#3b82f6,color:#fff,stroke-width:2px,stroke-dasharray: 5 5;
-    classDef database fill:#262626,stroke:#525252,color:#fff;
-
-    class G highlight;
-    class E,I database;
-    
-    style Old_Way fill:#171717,stroke:#404040,color:#aaa,stroke-width:1px,stroke-dasharray: 5 5
-    style New_Way fill:#1e3a8a30,stroke:#3b82f6,color:#fff,stroke-width:1px
-    
-    %% Hide the link used for positioning
-    linkStyle 0 stroke-width:0px,fill:none;
+===
+graph TD
+    User["User Request"] --> Edge["Edge Network (Vercel)"]
+    Edge --> MW["Middleware (Auth & Routing)"]
+    MW -- "Authorized" --> App["Next.js Monolith (App Router)"]
+    MW -- "Block/Redirect" --> User
+    App --> DB["Supabase (Postgres)"]
+    App --> Func["Edge Functions (Async Jobs)"]
+    DB -.-> Func
 `;
 
 
