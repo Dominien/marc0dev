@@ -8,6 +8,7 @@ export const dictionaries = {
       engineering: "Engineering",
       techstack: "Tech Stack",
       projekte: "Projekte",
+      blog: "Blog",
       contact: "Kontakt"
     },
     hero: {
@@ -177,6 +178,11 @@ export const dictionaries = {
       impressum: "Impressum",
       datenschutz: "Datenschutz",
       rights: "© 2025 Marco Patzelt. All rights reserved."
+    },
+    blog: {
+      archive: "Archiv",
+      title: "Engineering <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600\">Log</span>.",
+      description: "Dokumentation der Reise beim Aufbau skalierbarer Systeme, serverloser Architekturen und autonomer Agenten."
     }
   },
   en: {
@@ -185,6 +191,7 @@ export const dictionaries = {
       engineering: "Engineering",
       techstack: "Tech Stack",
       projekte: "Projects",
+      blog: "Blog",
       contact: "Contact"
     },
     hero: {
@@ -354,6 +361,11 @@ export const dictionaries = {
         impressum: "Imprint",
         datenschutz: "Privacy",
         rights: "© 2025 Marco Patzelt. All rights reserved."
+      },
+      blog: {
+        archive: "Archive",
+        title: "Engineering <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600\">Log</span>.",
+        description: "Documenting the journey of building scalable systems, serverless architectures, and autonomous agents."
       }
   }
 };

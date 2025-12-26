@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import BlogSection from "@/components/BlogSection";
 
 import Work from "@/components/Work";
 import Stack from "@/components/Stack";
@@ -6,8 +7,18 @@ import TechStack from "@/components/TechStack";
 import FrontendEngineering from "@/components/FrontendEngineering";
 import CTA from "@/components/CTA";
 import Innovation from "@/components/Innovation";
+import { getPosts } from "@/lib/data/posts";
+import { Locale } from "@/i18n/dictionaries";
 
-export default function Home() {
+interface HomeProps {
+  params: Promise<{ lang: string }>;
+}
+
+export default async function Home({ params }: HomeProps) {
+  const { lang } = await params;
+  const posts = await getPosts((lang as Locale) || 'en');
+  const latestPosts = posts.slice(0, 3);
+
   return (
     <>
       <script
@@ -37,6 +48,9 @@ export default function Home() {
         <FrontendEngineering />
         <Innovation />
         <Work />
+        <div id="blog-section">
+          <BlogSection posts={latestPosts} />
+        </div>
 
         <CTA />
       </main>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useLocale } from '@/i18n/LocaleContext';
 
 export default function Footer() {
-  const { dictionary } = useLocale();
+  const { dictionary, locale } = useLocale();
   const t = dictionary.footer;
   const tn = dictionary.navbar; // Reuse navbar links
 
@@ -70,6 +70,11 @@ export default function Footer() {
               <li>
                 <Link href="#work" className="hover:text-white transition-colors font-sans">
                   {tn.projekte}
+                </Link>
+              </li>
+              <li>
+                <Link href={`/${locale}/blog`} className="hover:text-white transition-colors font-sans">
+                  {tn.blog}
                 </Link>
               </li>
             </ul>

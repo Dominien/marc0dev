@@ -1,16 +1,4 @@
-
-"use client";
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-
+// This page is technically handled by middleware, but serves as a fallback.
 export default function RootPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    const browserLang = navigator.language || (navigator.languages && navigator.languages[0]);
-    const targetLang = (browserLang && browserLang.startsWith('de')) ? 'de' : 'en';
-    router.replace(`/${targetLang}`);
-  }, [router]);
-
-  return <div className="bg-black min-h-screen" />;
+  return null;
 }

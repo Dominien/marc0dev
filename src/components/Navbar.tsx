@@ -4,15 +4,32 @@ import Link from 'next/link';
 import { Mail } from 'lucide-react';
 import ShimmerButton from '@/components/ui/ShimmerButton';
 import { useLocale } from '@/i18n/LocaleContext';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const { dictionary, locale } = useLocale();
+  const pathname = usePathname();
+
+  const switchLanguage = (targetLocale: string) => {
+    if (!pathname) return `/${targetLocale}`;
+    
+    // Split the path into segments
+    const segments = pathname.split('/');
+    // segments[0] is empty string because path starts with /
+    // segments[1] is the locale (e.g. 'en', 'de')
+    
+    // Replace the locale segment
+    segments[1] = targetLocale;
+    
+    return segments.join('/');
+  };
 
   const navItems = [
     { name: dictionary.navbar.architektur, href: '#stack' },
     { name: dictionary.navbar.engineering, href: '#frontend' },
     { name: dictionary.navbar.techstack, href: '#tech-stack' },
-    { name: dictionary.navbar.projekte, href: '#work' }
+    { name: dictionary.navbar.projekte, href: '#work' },
+    { name: dictionary.navbar.blog, href: `/${locale}/blog` }
   ];
 
   return (
@@ -41,14 +58,14 @@ export default function Navbar() {
                 {/* Language Switcher */}
                 <div className="flex items-center gap-2 text-xs font-medium">
                      <Link 
-                       href="/de" 
+                       href={switchLanguage('de')} 
                        className={`transition-colors ${locale === 'de' ? 'text-white' : 'text-white/40 hover:text-white'}`}
                      >
                        DE
                      </Link>
                      <span className="text-white/20">/</span>
                      <Link 
-                       href="/en" 
+                       href={switchLanguage('en')} 
                        className={`transition-colors ${locale === 'en' ? 'text-white' : 'text-white/40 hover:text-white'}`}
                      >
                        EN
