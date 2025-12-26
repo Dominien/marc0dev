@@ -54,8 +54,8 @@ export default function Mermaid({ chart }: MermaidProps) {
   }, [chart]);
 
   return (
-    <div className="my-12 overflow-x-auto">
-        <div ref={containerRef} className="mermaid flex justify-center min-w-[600px] md:min-w-0" />
+    <div className="my-12 w-full flex justify-center overflow-hidden">
+        <div ref={containerRef} className="mermaid w-full flex justify-center [&>svg]:max-w-full [&>svg]:h-auto" />
     </div>
   );
 }

@@ -5,6 +5,8 @@ import ReactMarkdown from 'react-markdown';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import Mermaid from '@/components/Mermaid';
+import CodeSnippet from '@/components/CodeSnippet';
+
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -94,6 +96,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {post.mermaid_graph && (
             <Mermaid chart={post.mermaid_graph} />
           )}
+
+          <CodeSnippet data={post.code_snippet} />
 
           <ReactMarkdown>
             {post.content_md}
