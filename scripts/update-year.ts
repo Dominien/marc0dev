@@ -35,6 +35,7 @@ async function updateYear() {
     const fieldsToCheck = [
       'title_en', 'title_de',
       'content_md_en', 'content_md_de',
+      'content_en', 'content_de',
       'summary_en', 'summary_de',
       'tldr_en', 'tldr_de'
     ];
