@@ -120,7 +120,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           prose-strong:text-white prose-li:text-white/80">
           
           {post.mermaid_graph && (
-            <Mermaid chart={post.mermaid_graph} />
+            <div className="flex flex-col gap-12 mb-12">
+              {post.mermaid_graph.split('===').map((chart, index) => (
+                <Mermaid key={index} chart={chart.trim()} />
+              ))}
+            </div>
           )}
 
           <ReactMarkdown>
