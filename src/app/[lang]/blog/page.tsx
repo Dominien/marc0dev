@@ -14,7 +14,7 @@ interface BlogPageProps {
   params: Promise<{ lang: string }>;
 }
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 export default async function BlogOverviewPage({ params }: BlogPageProps) {
   const { lang } = await params;
