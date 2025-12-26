@@ -3,15 +3,18 @@
 import Link from 'next/link';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { BlogPost } from '@/lib/types/blog';
+import { useLocale } from '@/i18n/LocaleContext';
 
 interface BlogCardProps {
   post: BlogPost;
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
+  const { locale } = useLocale();
+  
   return (
     <Link 
-      href={`/blog/${post.slug}`}
+      href={`/${locale}/blog/${post.slug}`}
       className="group relative flex flex-col h-full bg-neutral-900/50 backdrop-blur-sm border border-white/5 rounded-2xl hover:border-blue-500/30 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.15)] overflow-hidden"
     >
       {/* Hover Gradient Overlay */}
