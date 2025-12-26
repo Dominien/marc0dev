@@ -13,6 +13,8 @@ interface BlogPostPageProps {
   }>;
 }
 
+export const revalidate = 60;
+
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug, lang } = await params;
   const post = await getPostBySlug(slug, lang as 'en' | 'de');

@@ -14,6 +14,8 @@ interface BlogPageProps {
   params: Promise<{ lang: string }>;
 }
 
+export const revalidate = 60;
+
 export default async function BlogOverviewPage({ params }: BlogPageProps) {
   const { lang } = await params;
   const locale = (lang as Locale) || 'en';
