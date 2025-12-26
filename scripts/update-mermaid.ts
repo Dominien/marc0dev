@@ -14,27 +14,20 @@ envContent.split('\n').forEach(line => {
 const supabase = createClient(env.SUPABASE_URL_MARCO, env.SUPABASE_SERVICE_KEY_MARCO);
 
 const newMermaidGraph = `graph TD
-    subgraph "Static (Old)"
-        A["User"] --> B["API"]
-        B -->|"Hardcoded SQL"| C["DB"]
+    subgraph "Startup A (Dead)"
+        A["Founding Eng"] -->|Focus K8s| B["Complex Infra"]
+        B -->|Months| C["0 Users"]
+        C --> D["Bankrupt"]
     end
+    style D fill:#ffcccc
 ===
 graph TD
-    subgraph "Agentic (New)"
-        D["User"] --> E["Agent (Gemini)"]
-        E -->|"1. Read Schema"| F["Schema"]
-        E -->|"2. Gen. Code"| G["Runtime Exec"]
-        G -->|"Dynamic Query"| H["DB / API"]
+    subgraph "Startup B (Alive)"
+        E["Founding Eng"] -->|Focus PaaS| F["Features"]
+        F -->|Days| G["Feedback"]
+        G --> H["Revenue"]
     end
-===
-graph TD
-    User["User Request"] --> Edge["Edge Network (Vercel)"]
-    Edge --> MW["Middleware (Auth & Routing)"]
-    MW -- "Authorized" --> App["Next.js Monolith (App Router)"]
-    MW -- "Block/Redirect" --> User
-    App --> DB["Supabase (Postgres)"]
-    App --> Func["Edge Functions (Async Jobs)"]
-    DB -.-> Func
+    style H fill:#ccffcc
 `;
 
 

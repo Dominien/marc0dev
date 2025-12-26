@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import Mermaid from '@/components/Mermaid';
+import CTABanner from '@/components/CTABanner';
 
 
 
@@ -111,6 +112,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </header>
 
         {/* Content */}
+
+
         <article className="prose prose-invert prose-base max-w-none 
           prose-headings:text-white prose-headings:font-bold prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg
           prose-p:text-white/80 prose-p:leading-relaxed
@@ -135,6 +138,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {part2}
           </ReactMarkdown>
         </article>
+
+        <div className="mt-24">
+          <CTABanner lang={lang} />
+        </div>
 
       </div>
     </main>
