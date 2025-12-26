@@ -97,11 +97,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <Mermaid chart={post.mermaid_graph} />
           )}
 
-          <CodeSnippet data={post.code_snippet} />
-
           <ReactMarkdown>
             {post.content_md}
           </ReactMarkdown>
+
+          <CodeSnippet data={post.code_snippet} />
         </article>
 
       </div>
