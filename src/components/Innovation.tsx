@@ -21,7 +21,7 @@ export default function Innovation() {
     const lines = [
       "> ANALYZING_INTENT: 'Revenue Q3'",
       "> FORMULATING_PLAN: SQL + Python",
-      "> EXEC_SQL: SELECT * FROM transactions WHERE date >= '2024-07-01'",
+      "> EXEC_SQL: SELECT * FROM transactions WHERE date >= '2025-07-01'",
       "> DATA_RETRIEVED: 14,203 rows",
       "> EXEC_PYTHON: df.groupby('category').sum()",
       "> VALIDATING_RESULT: Delta < 0.01%",
