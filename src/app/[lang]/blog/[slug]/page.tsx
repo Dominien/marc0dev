@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 
   return {
-    title: `${post.title} | Marco Patzelt`,
+    title: post.title,
     description: post.tldr,
   };
 }

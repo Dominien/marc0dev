@@ -1,3 +1,25 @@
+import { Metadata } from 'next';
+import { dictionaries, Locale } from '@/i18n/dictionaries';
+
+interface PageProps {
+  params: Promise<{ lang: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = (lang as Locale) || 'en';
+  const dict = dictionaries[locale];
+
+  return {
+    title: dict.footer.impressum,
+    description: 'Legal Notice / Impressum for Marco Patzelt',
+    robots: {
+      index: false,
+      follow: true,
+    }
+  };
+}
+
 export default function Impressum() {
   return (
     <main className="min-h-screen pt-32 pb-20 px-6 relative overflow-hidden">
