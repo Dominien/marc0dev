@@ -73,8 +73,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
 
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.tldr,
+    image: 'https://www.marc0.dev/og-image.png',
+    datePublished: post.published_at,
+    dateModified: post.updated_at || post.published_at,
+    author: {
+      '@type': 'Person',
+      name: 'Marco Patzelt',
+    },
+    url: `https://www.marc0.dev/${lang}/blog/${post.slug}`,
+  };
+
   return (
     <main className="min-h-screen pt-32 pb-24 px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-7xl mx-auto">
         
         {/* Back Link */}
