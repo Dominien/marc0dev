@@ -16,7 +16,8 @@ interface LayoutProps {
 
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
   const { lang } = await params;
-  const locale = (lang as Locale) || 'en';
+  const isValidLocale = (l: string): l is Locale => l === 'de' || l === 'en';
+  const locale = isValidLocale(lang) ? lang : 'en';
   const dict = dictionaries[locale];
 
   const baseUrl = 'https://www.marc0.dev';
@@ -72,6 +73,8 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
 export default async function LanguageLayout({ children, params }: LayoutProps) {
   const { lang } = await params;
+  const isValidLocale = (l: string): l is Locale => l === 'de' || l === 'en';
+  const validLang = isValidLocale(lang) ? lang : 'en';
   
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -88,7 +91,7 @@ export default async function LanguageLayout({ children, params }: LayoutProps) 
   };
 
   return (
-    <LocaleProvider locale={lang as Locale}>
+    <LocaleProvider locale={validLang}>
         <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
