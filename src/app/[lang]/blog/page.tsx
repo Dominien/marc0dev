@@ -5,10 +5,23 @@ import { BookOpen } from 'lucide-react';
 import CTA from '@/components/CTA';
 import { dictionaries, Locale } from '@/i18n/dictionaries';
 
-export const metadata: Metadata = {
-  title: 'Engineering Log | Marco Patzelt',
-  description: 'Thoughts on software architecture, AI agents, and full-stack engineering.',
-};
+export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = (lang as Locale) || 'en';
+  const t = dictionaries[locale].blog;
+
+  return {
+    title: 'Engineering Log | Marco Patzelt',
+    description: 'Thoughts on software architecture, AI agents, and full-stack engineering.',
+    alternates: {
+      canonical: `https://www.marc0.dev/${locale}/blog`,
+      languages: {
+        'en': 'https://www.marc0.dev/en/blog',
+        'de': 'https://www.marc0.dev/de/blog',
+      },
+    }
+  };
+}
 
 interface BlogPageProps {
   params: Promise<{ lang: string }>;

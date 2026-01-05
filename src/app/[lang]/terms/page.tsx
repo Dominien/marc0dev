@@ -1,9 +1,23 @@
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Terms of Service | Marco Patzelt',
-  description: 'Terms of Service for marc0.dev',
-};
+interface PageProps {
+  params: Promise<{ lang: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: 'Terms of Service | Marco Patzelt',
+    description: 'Terms of Service for marc0.dev',
+    alternates: {
+      canonical: `https://www.marc0.dev/${lang}/terms`,
+      languages: {
+        'en': 'https://www.marc0.dev/en/terms',
+        'de': 'https://www.marc0.dev/de/terms',
+      },
+    },
+  };
+}
 
 export default function TermsPage() {
   return (

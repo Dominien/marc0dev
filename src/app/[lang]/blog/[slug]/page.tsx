@@ -1,4 +1,4 @@
-import { getPostBySlug } from '@/lib/data/posts';
+import { getPostBySlug, getPosts } from '@/lib/data/posts';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import ReactMarkdown from 'react-markdown';
@@ -19,6 +19,20 @@ interface BlogPostPageProps {
   }>;
 }
 
+export async function generateStaticParams() {
+  const posts = await getPosts('en');
+  const locales = ['en', 'de'];
+  
+  const params = [];
+  for (const lang of locales) {
+    for (const post of posts) {
+      params.push({ lang, slug: post.slug });
+    }
+  }
+  
+  return params;
+}
+
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
@@ -34,6 +48,13 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: post.title,
     description: post.tldr,
+    alternates: {
+      canonical: `https://www.marc0.dev/${lang}/blog/${post.slug}`,
+      languages: {
+        'en': `https://www.marc0.dev/en/blog/${post.slug}`,
+        'de': `https://www.marc0.dev/de/blog/${post.slug}`,
+      },
+    },
   };
 }
 
