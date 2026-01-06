@@ -130,10 +130,10 @@ export const dictionaries = {
     },
     work: {
       featured: "Featured Project",
-      title: "Automatisierte <br/> <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40\">Event-Buchungsarchitektur</span>",
+      title: "Event Booking <br/> <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40\">Architecture</span>",
       task: {
         title: "Die Aufgabe",
-        desc: "Technische Konzeption und Entwicklung einer Schnittstelle, die ein Webflow-Frontend mit Microsoft Dynamics 365 verbindet, um komplexe Buchungsprozesse ohne Enterprise-Overhead abzubilden."
+        desc: "Konzeption einer Middleware-Architektur für komplexe Buchungsprozesse. Verbindung von modernen Frontends mit Enterprise-CRM-Systemen ohne Performance-Verlust."
       },
       solution: {
         title: "Die Umsetzung",
@@ -143,26 +143,26 @@ export const dictionaries = {
         },
         card_sync: {
             title: "Daten-Synchronisation",
-            desc: "Echtzeit-Abgleich für Buchungen."
+            desc: "Echtzeit-Abgleich von Verfügbarkeiten."
         },
         card_caching: {
             title: "High-Performance Caching",
-            desc: "Upstash (Redis)."
+            desc: "Upstash (Redis) für Latenz-Minimierung."
         },
          card_translation: {
-            title: "Translation Pipeline",
-            desc: "DeepL Integration."
+            title: "Automated Pipeline",
+            desc: "Automatisierte Content-Verarbeitung."
         }
       },
       cta_project: "Zum Live-Projekt",
-      credits: "Realisiert bei Marketer UX GmbH.",
+      credits: "Realisiert als White-Label Lösung.",
       diagram: {
         frontend: "Frontend",
-        backend: "Backend/CRM",
+        backend: "Enterprise CRM",
         middleware: "Middleware",
         serverless: "Vercel Serverless",
         redis_lock: "Redis Lock",
-        deepl_api: "DeepL API",
+        deepl_api: "Processing API",
         crm_sync: "CRM Sync"
       }
     },
@@ -312,40 +312,40 @@ export const dictionaries = {
       }
     },
     work: {
-        featured: "Featured Project",
-        title: "Automated <br/> <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40\">Event Booking Architecture</span>",
+        featured: "Architecture Showcase",
+        title: "High-Performance <br/> <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40\">Integration Layer</span>",
         task: {
-          title: "The Task",
-          desc: "Technical conception and development of an interface connecting a Webflow frontend with Microsoft Dynamics 365 to map complex booking processes without enterprise overhead."
+          title: "The Challenge",
+          desc: "Architecting a middleware solution to bridge the gap between modern, fast frontends and heavy enterprise CRM systems without sacrificing performance."
         },
         solution: {
-          title: "The Implementation",
+          title: "The Architecture",
           card_middleware: {
               title: "Middleware Engineering",
               desc: "Node.js Application (Vercel) for decoupling system logic."
           },
           card_sync: {
               title: "Data Synchronization",
-              desc: "Real-time reconciliation for bookings."
+              desc: "Real-time availability reconciliation."
           },
           card_caching: {
               title: "High-Performance Caching",
-              desc: "Upstash (Redis)."
+              desc: "Upstash (Redis) to minimize latency."
           },
            card_translation: {
-              title: "Translation Pipeline",
-              desc: "DeepL Integration."
+              title: "Processing Pipeline",
+              desc: "Automated content handling."
           }
         },
         cta_project: "View Live Project",
-        credits: "Realized at Marketer UX GmbH.",
+        credits: "White-label implementation.",
         diagram: {
           frontend: "Frontend",
-          backend: "Backend/CRM",
+          backend: "Enterprise CRM",
           middleware: "Middleware",
           serverless: "Vercel Serverless",
           redis_lock: "Redis Lock",
-          deepl_api: "DeepL API",
+          deepl_api: "Processing API",
           crm_sync: "CRM Sync"
         }
       },

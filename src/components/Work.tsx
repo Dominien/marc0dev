@@ -100,12 +100,6 @@ export default function Work() {
 
 
                 <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-white/5">
-                    <ShimmerButton 
-                        text={t.cta_project}
-                        href="https://www.european-speed-club.com/" 
-                        target="_blank"
-                        icon={<ArrowRight className="w-4 h-4" />}
-                    />
                     <div className="text-xs text-white/40 flex items-center gap-2 max-w-[200px] leading-tight font-mono">
                         <span className="w-1.5 h-1.5 rounded-full bg-white/20 shrink-0"></span>
                         {t.credits}
