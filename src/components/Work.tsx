@@ -100,10 +100,12 @@ export default function Work() {
 
 
                 <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-white/5">
-                    <div className="text-xs text-white/40 flex items-center gap-2 max-w-[200px] leading-tight font-mono">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/20 shrink-0"></span>
-                        {t.credits}
-                    </div>
+                    {t.credits && (
+                        <div className="text-xs text-white/40 flex items-center gap-2 max-w-[200px] leading-tight font-mono">
+                            <span className="w-1.5 h-1.5 rounded-full bg-white/20 shrink-0"></span>
+                            {t.credits}
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -190,7 +192,7 @@ export default function Work() {
                         {/* Code Snippet: Webhook Handler */}
                         <div className="mt-2 bg-black/50 rounded p-2 border border-white/5">
                             <code className="text-[9px] font-mono text-blue-300 block">
-                                POST /api/booking
+                                POST /api/ingest
                             </code>
                         </div>
                     </div>
@@ -209,7 +211,7 @@ export default function Work() {
                                 </div>
                                 {/* JSON Snippet: Redis */}
                                 <div className="w-full bg-black/50 rounded p-2 border border-white/5 font-mono text-[8px] leading-relaxed text-white/40">
-                                    <p><span className="text-white/60">"key"</span>: <span className="text-white/80">"evt_123_lock"</span>,</p>
+                                    <p><span className="text-white/60">"key"</span>: <span className="text-white/80">"sys_123_lock"</span>,</p>
                                     <p><span className="text-white/60">"ttl"</span>: <span className="text-blue-400">60</span>,</p>
                                     <p><span className="text-white/60">"status"</span>: <span className="text-white/80">"acquired"</span></p>
                                 </div>
@@ -227,9 +229,9 @@ export default function Work() {
                                 </div>
                                 {/* JSON Snippet: DeepL */}
                                 <div className="w-full bg-black/50 rounded p-2 border border-white/5 font-mono text-[8px] leading-relaxed text-white/40">
-                                    <p><span className="text-white/60">"text"</span>: <span className="text-white/80">"Porsche GT3"</span>,</p>
-                                    <p><span className="text-white/60">"source"</span>: <span className="text-blue-400">"DE"</span>,</p>
-                                    <p><span className="text-white/60">"target"</span>: <span className="text-blue-400">"EN"</span></p>
+                                    <p><span className="text-white/60">"text"</span>: <span className="text-white/80">"Complex Entity"</span>,</p>
+                                    <p><span className="text-white/60">"source"</span>: <span className="text-blue-400">"RAW"</span>,</p>
+                                    <p><span className="text-white/60">"target"</span>: <span className="text-blue-400">"NORM"</span></p>
                                 </div>
                             </div>
                         </div>
@@ -249,7 +251,7 @@ export default function Work() {
                             </div>
                             <div>
                                 <div className="text-[10px] font-bold text-white/40 uppercase tracking-wider">{t.diagram.crm_sync}</div>
-                                <div className="text-xs text-white/80">Microsoft Dynamics 365</div>
+                                <div className="text-xs text-white/80">Enterprise Core System</div>
                             </div>
                             <div className="ml-auto opacity-50 text-blue-400">
                                 <CheckCircle className="w-4 h-4" />

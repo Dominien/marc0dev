@@ -129,11 +129,11 @@ export const dictionaries = {
       }
     },
     work: {
-      featured: "Featured Project",
-      title: "Event Booking <br/> <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40\">Architecture</span>",
+      featured: "Architecture Logic",
+      title: "High-Performance <br/> <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40\">Integration Layer</span>",
       task: {
         title: "Die Aufgabe",
-        desc: "Konzeption einer Middleware-Architektur für komplexe Buchungsprozesse. Verbindung von modernen Frontends mit Enterprise-CRM-Systemen ohne Performance-Verlust."
+        desc: "Konzeption einer Middleware-Architektur für System-übergreifende Datenkonsistenz. Verbindung von modernen Frontends mit Enterprise-Core-Systemen ohne Performance-Verlust."
       },
       solution: {
         title: "Die Umsetzung",
@@ -143,7 +143,7 @@ export const dictionaries = {
         },
         card_sync: {
             title: "Daten-Synchronisation",
-            desc: "Echtzeit-Abgleich von Verfügbarkeiten."
+            desc: "Echtzeit-Abgleich komplexer Entitäten."
         },
         card_caching: {
             title: "High-Performance Caching",
@@ -155,15 +155,15 @@ export const dictionaries = {
         }
       },
       cta_project: "Zum Live-Projekt",
-      credits: "Realisiert als White-Label Lösung.",
+      credits: "",
       diagram: {
         frontend: "Frontend",
-        backend: "Enterprise CRM",
+        backend: "Enterprise Core",
         middleware: "Middleware",
         serverless: "Vercel Serverless",
         redis_lock: "Redis Lock",
         deepl_api: "Processing API",
-        crm_sync: "CRM Sync"
+        crm_sync: "Core Sync"
       }
     },
     cta: {
@@ -312,11 +312,11 @@ export const dictionaries = {
       }
     },
     work: {
-        featured: "Architecture Showcase",
+        featured: "Architecture Logic",
         title: "High-Performance <br/> <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40\">Integration Layer</span>",
         task: {
           title: "The Challenge",
-          desc: "Architecting a middleware solution to bridge the gap between modern, fast frontends and heavy enterprise CRM systems without sacrificing performance."
+          desc: "Architecting a middleware solution to bridge the gap between modern, fast frontends and heavy enterprise systems without sacrificing performance."
         },
         solution: {
           title: "The Architecture",
@@ -326,7 +326,7 @@ export const dictionaries = {
           },
           card_sync: {
               title: "Data Synchronization",
-              desc: "Real-time availability reconciliation."
+              desc: "Real-time entity reconciliation."
           },
           card_caching: {
               title: "High-Performance Caching",
@@ -338,15 +338,15 @@ export const dictionaries = {
           }
         },
         cta_project: "View Live Project",
-        credits: "White-label implementation.",
+        credits: "",
         diagram: {
           frontend: "Frontend",
-          backend: "Enterprise CRM",
+          backend: "Enterprise Core",
           middleware: "Middleware",
           serverless: "Vercel Serverless",
           redis_lock: "Redis Lock",
           deepl_api: "Processing API",
-          crm_sync: "CRM Sync"
+          crm_sync: "Core Sync"
         }
       },
       cta: {
